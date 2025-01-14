@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parag Vastrad - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            color: #4CAF50;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #81c784;
+        }
+
+        nav ul li a {
+    color: #4CAF50; /* Initial color */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+nav ul li a:hover {
+    color: #fff; /* Change text color to white on hover */
+}
+
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('hero-bg.jpg') center/cover no-repeat;
+            color: white;
+            animation: fadeIn 1.5s ease-in;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        .hero img {
+            border-radius: 50%;
+            width: 150px;
+            margin-bottom: 20px;
+            border: 5px solid #4CAF50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .section {
+            padding: 50px 20px;
+        }
+
+        .about, .projects, .skills, .contact {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .projects .project {
+            display: inline-block;
+            width: 300px;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .projects .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            color: #4CAF50;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        .contact a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
+            color: #81c784;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #81c784;
+            transform: scale(1.05);
+        }
+
+        .floating-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .floating-widget:hover {
+            transform: scale(1.1);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 80px;
+            right: 30px;
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .floating-widget:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-toggle:hover {
+            background-color: #81c784;
+        }
+
+        .skills {
+    position: relative;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.floating-logos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Avoid interfering with other elements */
+}
+
+.floating-logos .logo {
+    position: absolute;
+    width: 50px; /* Set logo size */
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-logos .logo1 {
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.floating-logos .logo2 {
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.floating-logos .logo3 {
+    left: 80%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px); /* Move up */
+    }
+    100% {
+        transform: translateY(0); /* Return to original position */
+    }
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('hero-bg.jpg') center/cover no-repeat;
+    color: white;
+    animation: fadeIn 1.5s ease-in;
+    box-shadow: inset 0 0 10px #000;
+    position: relative;
+}
+
+.typed-text, .typed-subtext {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #fff; /* Cursor effect */
+}
+
+.typed-text {
+    animation: typing 4s steps(30) 1s forwards, blink-caret 0.75s step-end infinite;
+}
+
+.typed-subtext {
+    margin-top: 20px;
+    animation: typing 3s steps(30) 6s forwards, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    50% {
+        border-color: transparent;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    <canvas id="stars"></canvas>
+    <header>
+        <h1>Parag Vastrad</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="images\PIC.jpeg" alt="Parag's Photo">
+        <h2 class="typed-text">Hello, I am Parag Vastrad</h2>
+        <p class="typed-subtext">SOFTWARE DEVELOPER AND RESEARCH ENTHUSIAST</p>
+        <a href="#contact" class="cta-button">Get in Touch</a>
+    </section>
+    
+
+    <section class="section about" id="about">
+        <h2 class="fade-in">About Me</h2>
+        <p class="fade-in">I am a proactive individual with expertise in machine learning, data analysis, and generative AI, with projects in disaster management, lunar exploration, and IoT analytics. I leverage advanced technologies like neural networks and geospatial mapping to develop impactful solutions. As a research lead and mentor, I combine technical skills with practical problem-solving. Currently studying at VIT Chennai, I aim to use
+            advanced technologies to drive meaningful change.</p>
+        </section>
+    
+        <section class="section projects" id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Enhancement of PSRs of Lunar Craters</h3>
+                <p>ML Apr 2024 - May 2024
+                    Developed an AI-based approach to enhance and analyze Permanently Shadowed Regions (PSRs) of lunar craters for
+                    resource identi cation. Leveraged advanced image processing techniques and neural networks to improve visibility
+                    in low-light conditions and detect water ice deposits. Focused on aiding lunar exploration missions by providing
+                    actionable insights into resource-rich areas.</p>
+            </div>
+            <div class="project">
+                <h3>After Disaster Management and Human Detection</h3>
+                <p>Computer Vision Jan 2024 - Jan 2024
+                    Developed an AI-powered drone system for geospatial mapping, damage assessment, debris detection, and human
+                     identi cation. Integrated CNNs and Google Maps AI for analysis and location mapping, with Twilio-enabled real-time
+                     messaging to enhance disaster</p>
+            </div>
+            <div class="project">
+                <h3>Hackathon Projects</h3>
+                <p>Participated in multiple hackathons with innovative solutions in computer vision and threat analysis.</p>
+            </div>
+        </section>
+    
+        <section class="section skills" id="skills">
+            <h2>Skills</h2>
+            <p>Machine Learning | Generative AI and LLMs | Java | C++ | Python | Data Structures and Algorithms</p>
+            
+            <!-- Floating logos -->
+            <div class="floating-logos">
+                <img src="path_to_logo1.png" class="logo logo1" alt="Logo 1">
+                <img src="path_to_logo2.png" class="logo logo2" alt="Logo 2">
+                <img src="path_to_logo3.png" class="logo logo3" alt="Logo 3">
+            </div>
+        </section>
+        
+    
+        <section class="section experience" id="experience">
+            <h2>Experience</h2>
+            <p><strong>Research Intern</strong>, Samsung PRISM (Jun 2024 - Jan 2025): Developed systems using LLMs to personalize headlines based on user personas.</p>
+            <p><strong>Software Intern</strong>, SmartInternz (Jun 2024 - Aug 2024): Built the TripTrekk intelligent travel planner using GenAI and Vertex AI.</p>
+            <p><strong>Machine Learning Intern</strong>, VIT Chennai (Jul 2024 - Sep 2024): Worked on human action identification using computer vision.</p>
+        </section>
+    
+        <section class="section contact" id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:paragvastrad37@gmail.com">paragvastrad37@gmail.com</a></p>
+            <p>Phone: <a href="tel:+917385551737">7385551737</a></p>
+            <p>Location: Chennai, Tamil Nadu</p>
+            <p><a href="https://www.linkedin.com/in/parag-vastrad" target="_blank">LinkedIn Profile</a></p>
+        </section>
+    
+        <footer>
+            <p>&copy; 2025 Parag Vastrad. All rights reserved.</p>
+        </footer>
+    
+        <script>
+            // Theme toggle functionality
+            const toggleTheme = () => {
+                document.body.classList.toggle('light-theme');
+            };
+    
+            // Moving stars animation
+            const canvas = document.getElementById('stars');
+            const ctx = canvas.getContext('2d');
+    
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+    
+            const stars = Array(100).fill().map(() => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2,
+                speed: Math.random() * 0.5,
+            }));
+    
+            const drawStars = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                stars.forEach(star => {
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+                    star.y -= star.speed;
+                    if (star.y < 0) star.y = canvas.height;
+                });
+                requestAnimationFrame(drawStars);
+            };
+    
+            drawStars();
+    
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        </script>
+    </body>
+    </html>
+    
